@@ -13,6 +13,7 @@ I primarily created docksterisk for my own use but feel free to use it, or part 
 
 ## What is it based on?
 Generally this is based on:
+* Docker
 * phusion/baseimage
 * Asterisk 14
 
