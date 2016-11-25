@@ -1,0 +1,19 @@
+/var/log/asterisk/messages 
+/var/log/asterisk/*log 
+{
+  missingok
+  rotate 30
+  daily
+  create 0640 asterisk asterisk
+  postrotate
+    /usr/sbin/asterisk -rx 'logger reload'
+  endscript
+}
+
+/var/log/asterisk/cdr-csv/*.csv 
+{
+  missingok
+  rotate 12
+  monthly
+  create 0640 asterisk asterisk
+}

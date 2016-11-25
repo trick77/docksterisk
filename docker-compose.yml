@@ -1,0 +1,16 @@
+version: '2'
+services:
+  asterisk:
+    image: docksterisk_asterisk
+    build:
+      context: .
+    network_mode: host # use this instead of ports if you want to open a large port range
+    volumes:
+    - log:/var/log/asterisk
+    # - /etc/asterisk
+    # - /var/lib/asterisk
+    restart: always
+ 
+volumes:
+  log:
+
