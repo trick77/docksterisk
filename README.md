@@ -1,12 +1,13 @@
 # docksterisk
 ## What is it?
-It's is a **starting point** to a containerized Asterisk SIP server.  It includes mimimalistic extensions and dialplan configurations. It's using Asterisk 14 and PJSIP instead of CHAN_SIP. 
+It's a **starting point** to a containerized Asterisk SIP server.  It includes mimimalistic extensions and dialplan configurations. It's using Asterisk 14 and PJSIP instead of CHAN_SIP. 
 
 I primarily created docksterisk for my own use but feel free to use it, or part of it, for your own SIP server.
 
 ## What is it not?
 * No UI
 * Not Asterisk-noob-friendly
+* Not Docker-noob-friendly
 * No documentation
 * No support
 
