@@ -27,7 +27,7 @@ Generally this is based on:
 
 ## Additional information
 * Since large port ranges in Docker (in combination with iptables) are problematic, I'm exposing the host network to the Docksterisk container
-* Ports used: 5060/udp (SIP), 8088/tcp (HTTP), 16384-17000/udp
+* Ports used: 5060/udp (SIP), 8088/tcp (HTTP), 16384-17000/udp (RTP)
 * The configuration samples assume that the SIP phones are behind NAT and the SIP server is on a public, static IP (i.e. on a VPS)
 * If you want to use the built-in webserver for uptime monitoring, you can use this URL: http://mysipserver:8088/docksterisk/httpstatus/
 
