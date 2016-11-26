@@ -3,6 +3,8 @@
 /sbin/iptables -N SIP
 /sbin/iptables -N SIPREG
 /sbin/iptables -N SIPINV
+/sbin/iptables -N SIPOPT
+
 /sbin/iptables -A INPUT -p udp -m udp --dport 5060 -j SIP
 
 # Enable Asterisk webserver for uptime monitoring
