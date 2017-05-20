@@ -41,12 +41,8 @@ RUN curl -o googletts-latest.zip https://codeload.github.com/zaf/asterisk-google
 	&& unzip googletts-latest.zip \
 	&& cp asterisk-googletts-master/googletts.agi /var/lib/asterisk/agi-bin/
 
-# Copying configuration
-COPY conf/asterisk/* /etc/asterisk/
-COPY conf/logrotate/* /etc/logrotate.d/
-
-COPY conf/blacklist/update-blacklist.sh /usr/local/bin/
-COPY conf/blacklist/update-blacklist.cron /etc/cron.daily/update-blacklist
+# Add phone spammer update script
+COPY blacklist/update-blacklist.sh /usr/local/bin/
 
 # Creating Asterisk user and set permissions
 RUN useradd -m $ASTERISKUSER -U -s /sbin/nologin --home-dir /var/lib/asterisk
@@ -56,20 +52,10 @@ RUN chown -R $ASTERISKUSER:$ASTERISKUSER /var/lib/asterisk \
 	&& chown -R $ASTERISKUSER:$ASTERISKUSER /var/run/asterisk \
 	&& chown -R $ASTERISKUSER:$ASTERISKUSER /etc/asterisk
 
-RUN rm -rf /tmp/*
+COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh && rm -rf /tmp/*
 
-# https://github.com/phusion/baseimage-docker/issues/338
-RUN sed -i 's/^su root syslog/su root adm/' /etc/logrotate.conf
-
-VOLUME /var/log/asterisk
-VOLUME /etc/asterisk
-VOLUME /var/lib/asterisk
-
-# The HTTP 8088 port (TCP) can be used for remote uptime monitoring
-# For instance with this URL: http://sipserver:8088/docksterisk/httpstatus/
-EXPOSE 8088
-
-EXPOSE 5060
 WORKDIR /var/lib/asterisk
 USER $ASTERISKUSER
-CMD /usr/sbin/asterisk -fvvv -U ${ASTERISKUSER} -G ${ASTERISKUSER}
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["sh", "-c", "/usr/sbin/asterisk -fvvv -U ${ASTERISKUSER} -G ${ASTERISKUSER}"]

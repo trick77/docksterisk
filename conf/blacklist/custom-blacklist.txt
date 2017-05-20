@@ -1,0 +1,7 @@
+# Custom blacklist for phone spammers.
+#
+# Format:
+# 1234567890;Call-center
+# 1234567891;Another call-center
+#
+

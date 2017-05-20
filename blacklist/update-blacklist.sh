@@ -3,6 +3,7 @@ CLI="/usr/sbin/asterisk -rx"
 TMPFILE=$(mktemp /tmp/blacklist.XXXXXX)
 
 curl -o ${TMPFILE} https://trick77.com/tools/latest_cc_blacklist.txt
+cat /etc/docksterisk/custom-blacklist.txt >> $TMPFILE
 
 if [ "$1" == "-d" ]; then
   echo "Removing all existing blacklist entries..."
